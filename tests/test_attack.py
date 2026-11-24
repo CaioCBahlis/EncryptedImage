@@ -2,10 +2,13 @@ import unittest
 
 from attack import KEY_LENGTH, PNG_END, PNG_HEADER, recover_full_key, recover_header_key
 
+# Deterministic key so synthetic ciphertext can be checked against known bytes.
 KNOWN_KEY = bytes((index * 37 + 11) & 0xFF for index in range(KEY_LENGTH))
 
 
 def make_ciphertext(padding_length: int) -> bytes:
+    # Build PNG-like plaintext with the chosen padding length, then apply the
+    # same repeating XOR encryption without needing the real challenge file.
     minimum_original_length = len(PNG_HEADER) + len(PNG_END)
     original_length = (KEY_LENGTH - padding_length) % KEY_LENGTH
     while original_length < minimum_original_length:
@@ -23,6 +26,7 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(recover_header_key(ciphertext), KNOWN_KEY[: len(PNG_HEADER)])
 
     def test_recover_full_key_for_every_padding_length(self) -> None:
+        # Every padding length from 1 through 24 must be recoverable.
         for padding_length in range(1, KEY_LENGTH + 1):
             with self.subTest(padding_length=padding_length):
                 key, recovered_padding = recover_full_key(make_ciphertext(padding_length))

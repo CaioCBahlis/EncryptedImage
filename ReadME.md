@@ -18,7 +18,7 @@ Once the complete 24-byte key is recovered, we can decrypt the image and extract
 
 ## Current Implementation Status
 
-This branch implements the key-recovery half of the attack in `attack.py`. The original `enc27-1-1.py` is left unchanged as a reference; the implementation uses Python 3 `bytes` instead of Python 2 strings.
+This branch implements the key-recovery half of the attack in `attack.py`. The provided `enc27-1-1.py` preserves the same algorithm but now uses Python 3 `bytes` so the encrypted output can be written to a binary file without a `str`-to-`bytes` type error.
 
 ### Completed
 
@@ -96,6 +96,8 @@ for i in range(0, len(data), 24):
 with open('BITSCTFfullhd.png', 'wb') as f:
     f.write(enc_data)
 ```
+
+The committed `enc27-1-1.py` is a Python 3 `bytes` equivalent of this snippet. It reads `key.txt` in binary mode and accumulates output in a `bytearray`, which avoids passing a `str` to `write()` on a file opened with `"wb"`.
 
 ### 2.1 How the Encryption Works
 
@@ -361,7 +363,7 @@ EncryptedImage/
 
 - `ReadME.md`: Project documentation, attack explanation, and teammate handoff.
 - `attack.py`: All attack code, teammate stubs, and the command-line interface.
-- `enc27-1-1.py`: Original encryption script, preserved unchanged for reference.
+- `enc27-1-1.py`: Python 3 reference implementation of the original encryption script.
 - `BITSCTFfullhd.png`: Encrypted input PNG supplied by the assignment.
 - `tests/test_attack.py`: Synthetic tests for header and full-key recovery.
 
