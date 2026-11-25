@@ -107,19 +107,28 @@ Make sure `BITSCTFfullhd.png` is in the root folder (`EncryptedImage/`). (If you
 1. Open `decrypt_png.mw` in **Maple 2026**.
 2. Right after `restart;`, add `currentdir(...)` pointing to the folder containing `BITSCTFfullhd.png` (using forward slashes):
    ```maple
-   currentdir("D:/MAD 4472/EncryptedImage");
+   currentdir("D:/MAD 4472/EncryptedImage");        # Windows
+   currentdir("/Users/<you>/EncryptedImage");       # macOS
    ```
 3. Click **Execute Entire Worksheet (`!!!`)**.
 4. Open `decrypted.png` to view the `BITSCTF{p_en_gee}` flag.
 
-### Option B: Command Line (PowerShell + `cmaple.exe`)
+### Option B: Windows Command Line (PowerShell + `cmaple.exe`)
 Open PowerShell in `EncryptedImage/` and run:
 
 ```powershell
 & "C:\Program Files\Maple 2026\bin.X86_64_WINDOWS\cmaple.exe" -q decrypt_png.mpl
 ```
 
-Maple will print:
+### Option C: macOS Command Line (Terminal + `maple`)
+Open Terminal, `cd` into the `EncryptedImage/` folder, and run:
+
+```bash
+"/Library/Frameworks/Maple.framework/Versions/2026/bin/maple" -q decrypt_png.mpl
+open decrypted.png
+```
+
+For either command-line option, Maple will print:
 - `Detected padding length: 19 bytes`
 - `Recovered 24-byte key (decimal): [114, 107, 104, 37, 81, 80, 52, 103, 48, 38, 51, 103, 52, 54, 64, 52, 42, 37, 102, 40, 85, 78, 35, 92]`
 - `Success! Open 'decrypted.png' to view the BITSCTF flag.`
@@ -130,10 +139,21 @@ Maple will print:
 
 To verify the Maple script on a custom PNG with a known key (`ABCDEFGHIJKLMNOPQRSTUVWX`):
 
+**Windows (PowerShell):**
+
 ```powershell
 cd "d:\MAD 4472\EncryptedImage\testing"
 python make_test.py
 & "C:\Program Files\Maple 2026\bin.X86_64_WINDOWS\cmaple.exe" -q ..\decrypt_png.mpl
+```
+
+**macOS (Terminal), starting in `EncryptedImage/`:**
+
+```bash
+cd testing
+python3 make_test.py
+"/Library/Frameworks/Maple.framework/Versions/2026/bin/maple" -q ../decrypt_png.mpl
+cmp decrypted.png test.png && echo "Match"
 ```
 
 Expected verification:
