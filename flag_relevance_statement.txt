@@ -1,0 +1,4 @@
+Flag: BITSCTF{p_en_gee}
+
+Relevance Statement:
+This project applies the secret-key encryption material from MAD 4472, specifically the notions of perfect secrecy and semantic security (Ch. 2) and the two-time pad problem (Ch. 3, Sec. 3.3.1), to show that reusing one 24-byte XOR key across every block of a deterministically encrypted file destroys confidentiality. We exploit the linearity of XOR (K = P XOR C) with a known-plaintext attack, using the fixed PNG header, the IEND trailer, and the PKCS#7-style padding to recover all 24 key bytes without brute force. The attack is implemented in Maple 2026 as a practical cryptanalysis exercise matching the course outcomes on attacking symmetric schemes and writing programs in a computer algebra system.

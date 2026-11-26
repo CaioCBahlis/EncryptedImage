@@ -71,7 +71,7 @@ With all 24 bytes of `key` recovered:
 ```text
 EncryptedImage/
 ├── README.md                  # This group guide
-├── Relevance_Statement.txt    # Final submission Flag + Relevance Statement
+├── flag_relevance_statement.txt    # Final submission Flag + Relevance Statement
 ├── enc27-1-1.py               # Original encryption algorithm provided in the prompt
 ├── BITSCTFfullhd-1-1.png      # Original downloaded Canvas encrypted PNG
 ├── BITSCTFfullhd.png          # Copy of BITSCTFfullhd-1-1.png (input filename expected by Maple)
@@ -167,14 +167,14 @@ Expected verification:
 
 | Rubric Item | Weight | Where It Lives |
 | --- | --- | --- |
-| **Flag Value** | 60% | `BITSCTF{p_en_gee}` in `Relevance_Statement.txt` |
+| **Flag Value** | 60% | `BITSCTF{p_en_gee}` in `flag_relevance_statement.txt` |
 | **Maple Code** | 20% | `decrypt_png.mw` and `decrypt_png.mpl` |
 | **Code Comments** | 10% | Inline step-by-step comments throughout `decrypt_png.mw` / `decrypt_png.mpl` |
-| **Relevance Statement** | 10% | `Relevance_Statement.txt` (tied to Boneh–Shoup Ch. 2–5 & MAD 4472) |
+| **Relevance Statement** | 10% | `flag_relevance_statement.txt` (tied to Boneh–Shoup Ch. 2–5 & MAD 4472) |
 
-Included in `MAD4472_EncryptedImage_Submission.zip`:
-1. `Relevance_Statement.txt` (Flag + Relevance Statement)
-2. `decrypt_png.mw` and `decrypt_png.mpl` (Commented Maple code)
+Included in `MAD4472_EncryptedImage_Submission.zip` (README is for the group only and is not submitted):
+1. `flag_relevance_statement.txt` (Flag + Relevance Statement)
+2. `decrypt_png.mpl` (Commented Maple code that produced the flag)
 3. `BITSCTFfullhd.png` (Encrypted PNG input)
 4. `decrypted.png` (Decrypted PNG showing `BITSCTF{p_en_gee}`)
-5. `enc27-1-1.py` and `README.md`
+5. `enc27-1-1.py` (Original encryption algorithm)
